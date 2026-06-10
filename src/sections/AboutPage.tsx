@@ -1,4 +1,5 @@
 import BaseDetailPage from './BaseDetailPage';
+import Certifications from './Certifications';
 import { architectureConfig } from '../config';
 
 export default function AboutPage() {
@@ -8,7 +9,7 @@ export default function AboutPage() {
       sectionLabel="Biography"
       subtitle={architectureConfig.title}
     >
-      <div className="flex flex-col lg:flex-row gap-12 lg:items-start">
+      <div className="flex flex-col lg:flex-row gap-12 lg:items-start mb-20">
         {/* Image Container */}
         <div 
           className="w-full lg:w-1/2 sticky top-24"
@@ -74,6 +75,10 @@ export default function AboutPage() {
             </p>
           </div>
         </div>
+      </div>
+
+      <div style={{ marginLeft: '-5vw', marginRight: '-5vw' }}>
+        <Certifications />
       </div>
     </BaseDetailPage>
   );

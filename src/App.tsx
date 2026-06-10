@@ -27,8 +27,8 @@ function HomePage() {
         <Hero />
         <Curriculum />
         <CinematicVision />
-        <AlumniArchives />
         <Certifications />
+        <AlumniArchives />
         <Footer />
       </main>
     </div>
