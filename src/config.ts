@@ -185,6 +185,7 @@ export const architectureConfig: ArchitectureConfig = {
 
 export interface ResearchProject {
   title: string;
+  slug: string;
   year: string;
   discipline: string;
   image: string;
@@ -200,30 +201,35 @@ export const researchConfig: ResearchConfig = {
   projects: [
     {
       title: "SecureAuth",
+      slug: "secureauth",
       year: "2026",
       discipline: "Cybersecurity",
-      image: "images/research-3.jpg",
+      image: "images/secureauth.png",
     },
     {
       title: "Cavendish Appointment System",
+      slug: "cavendish-appointment-system",
       year: "2026",
       discipline: "Real-Time System",
       image: "images/research-1.jpg",
     },
     {
       title: "MobiLink",
+      slug: "mobilink",
       year: "2026",
       discipline: "Full-Stack MVP",
-      image: "images/research-1.jpg",
+      image: "images/mobilink.png",
     },
     {
       title: "Lala",
+      slug: "lala",
       year: "2026",
       discipline: "Travel Tech",
-      image: "images/research-2.jpg",
+      image: "images/lala.png",
     },
     {
       title: "AutoElite Car Dealership",
+      slug: "autoelite-car-dealership",
       year: "2026",
       discipline: "E-Commerce",
       image: "images/research-4.jpg",
@@ -237,8 +243,11 @@ export const researchConfig: ResearchConfig = {
 
 export interface ProjectDetailData {
   title: string;
+  heroImage: string;
+  heroCaption: string;
   summary: string;
   shortDescription: string;
+  marketContext: string;
   keyFeatures: string[];
   techStack: Record<string, string>;
   architectureNotes: string;
@@ -251,113 +260,136 @@ export interface ProjectDetailData {
 
 export const projectDetailsConfig: Record<string, ProjectDetailData> = {
   "secureauth": {
-    title: "SecureAuth — Enterprise Two-Factor Authentication System",
-    summary: "SecureAuth is a production-grade, full-stack two-factor authentication (2FA) system designed to protect applications with enterprise-level security. Built as a final-year cybersecurity project at Cavendish University Zambia, it implements Time-Based One-Time Password (TOTP) authentication following RFC 6238 standards, compatible with Google Authenticator, Authy, and Microsoft Authenticator.",
-    shortDescription: "A production-ready enterprise 2FA system featuring TOTP authentication, JWT session management, multi-layer DDoS protection, and a commercial-grade web UI.",
+    title: "SecureAuth - Enterprise Two-Factor Authentication System",
+    heroImage: "/images/secureauth.png",
+    heroCaption: "Commercial-grade landing page for a production-ready two-factor authentication platform.",
+    summary: "SecureAuth is a production-grade full-stack two-factor authentication system built to protect applications with enterprise-level security. It implements Time-Based One-Time Password authentication following RFC 6238 standards, making it compatible with Google Authenticator, Authy, and Microsoft Authenticator. The full flow covers registration, password login, QR-code enrollment, 6-digit authenticator verification, protected dashboards, and audit visibility.",
+    shortDescription: "Enterprise 2FA with TOTP enrollment, JWT sessions, DDoS protection, and a polished security product interface.",
+    marketContext: "Built as a final-year cybersecurity project at Cavendish University Zambia, SecureAuth demonstrates how smaller teams can access serious authentication infrastructure without enterprise complexity. The project focuses on the practical security layers that real apps need: token management, brute-force prevention, session handling, audit trails, and application-level flood protection.",
     keyFeatures: [
-      "TOTP Two-Factor Authentication — RFC 6238 compliant, works with Google Authenticator, Authy, and Microsoft Authenticator via QR code enrollment",
-      "Multi-Layer DDoS Protection — 6-layer application flood protection including IP auto-banning, connection limiting, request validation, and progressive slowdown",
-      "JWT Session Management — Stateless authentication with access/refresh tokens, inactivity auto-logout, and configurable session timeouts",
-      "Account Lockout & Rate Limiting — Automatic brute-force protection with progressive delays after failed login attempts",
-      "Complete Audit Trail — Login history tracking with IP addresses, device fingerprints, timestamps, and location data"
+      "TOTP two-factor authentication with RFC 6238-compatible QR-code enrollment for authenticator apps",
+      "Multi-layer DDoS protection with IP tracking, auto-banning, connection limiting, request validation, endpoint limits, and progressive slowdown",
+      "JWT session management with access and refresh tokens, inactivity auto-logout, and configurable timeouts",
+      "Account lockout and rate limiting to slow brute-force attempts after repeated failed logins",
+      "Complete audit trail capturing login history, IP addresses, device fingerprints, timestamps, and location data"
     ],
     techStack: {
       "Frontend": "HTML5, CSS3, Vanilla JavaScript (Static)",
       "Backend": "Node.js, Express.js 4.x",
-      "Database": "PostgreSQL (via Supabase), SQLite (local dev)",
+      "Database": "PostgreSQL (Supabase), SQLite (local dev)",
       "Authentication": "bcrypt, jsonwebtoken, speakeasy (TOTP), qrcode",
       "Security": "Helmet (CSP), express-rate-limit, express-slow-down",
       "Deployment": "Vercel"
     },
-    architectureNotes: "SecureAuth follows a modular MVC-inspired architecture. The Express server serves static frontend files while mounting API routes under /api/. The backend is organized into controllers, middleware, models, routes, utils, and database initialization. The DDoS protection middleware is isolated in its own module for reusability.",
+    architectureNotes: "SecureAuth follows a modular MVC-inspired architecture. The Express server serves static frontend files while mounting API routes under /api/. The backend is organized into controllers for business logic, middleware for JWT verification and DDoS protection, models for the data layer, routes for endpoint definitions, utils for TOTP/JWT helpers, and database initialization for PostgreSQL or SQLite development.",
     challengesSolved: [
-      "Implementing RFC 6238 TOTP with clock drift tolerance and seamless authenticator app integration",
-      "Designing a custom multi-layer DDoS protection middleware stack",
-      "Building a secure dual-token (access + refresh) JWT system",
-      "Configuring complex Helmet CSP rules for security and functionality",
-      "Migrating from SQLite to PostgreSQL (Supabase) for production"
+      "Implemented RFC 6238 TOTP generation with clock drift tolerance and seamless authenticator app integration",
+      "Designed a reusable flood-protection middleware stack that reduces abuse without blocking legitimate users",
+      "Built secure dual-token session handling with inactivity detection and proper token invalidation",
+      "Tuned Helmet and Content Security Policy rules to balance strict security with frontend functionality",
+      "Migrated from SQLite to PostgreSQL/Supabase for production deployment while keeping local development simple"
     ],
     liveDemoUrl: "https://secure-auth-seven.vercel.app/",
     repoUrl: "https://github.com/MetaADRI/SecureAuth",
     tags: ["NodeJS", "Express", "Cybersecurity", "2FA", "TOTP", "JWT", "DDoSProtection", "PostgreSQL", "FullStack", "Authentication", "Vercel"],
     screenshots: [
-      { url: "/images/secureauth.png", caption: "SecureAuth Enterprise Authentication Interface" }
+      { url: "/images/secureauth.png", caption: "Landing page positioning SecureAuth as an enterprise authentication product with clear CTAs and trust indicators." },
+      { url: "/images/secureauth-register.png", caption: "Registration and enrollment flow for creating an account and setting up authenticator-based 2FA." },
+      { url: "/images/secureauth-verify.png", caption: "Verification step where users enter a 6-digit time-based one-time password after password authentication." },
+      { url: "/images/secureauth-dashboard.png", caption: "Authenticated dashboard view showing the protected post-login experience." }
     ]
   },
   "cavendish-appointment-system": {
-    title: "Cavendish Appointment System — Real-Time University Booking Platform",
-    summary: "The Cavendish Appointment System is a comprehensive, full-featured appointment scheduling platform built specifically for Cavendish University Zambia. It connects students with university officials through a streamlined booking workflow: students browse official availability, request appointments, and track their status in real time.",
+    title: "Cavendish Appointment System - Real-Time University Booking Platform",
+    heroImage: "/images/research-1.jpg",
+    heroCaption: "Concept visual for the real-time university scheduling platform and role-based appointment workflow.",
+    summary: "The Cavendish Appointment System is a full-featured appointment scheduling platform built specifically for Cavendish University Zambia. It connects students with university officials through a streamlined workflow where students browse official availability, request appointments, and track their status in real time, while officials manage schedules and approve or reject requests from a dedicated dashboard.",
     shortDescription: "A full-featured university appointment scheduling system with real-time status tracking, automated reminders, role-based access, and an intelligent time-driven scheduler.",
+    marketContext: "The project solves the real campus problem of unstructured office hours, long student wait times, and difficult schedule coordination. By digitizing bookings, availability, reminders, presence confirmation, and admin analytics, it improves operational visibility for the university and makes student support easier to access.",
     keyFeatures: [
-      "Role-Based Booking System — Portals for Students, Officials, and Admins",
-      "Real-Time Status Tracking — Live appointment status updates with 20-second polling",
-      "Automated Scheduler — Time-driven scheduler running every 30 seconds for reminders and auto-completion",
-      "Double-Booking Prevention — Database-level constraints to prevent overlapping appointments",
-      "Weekly Availability Management — Fixed 30-minute time slots (08:30–15:30) management"
+      "Role-based booking system with tailored portals for students, officials, and administrators",
+      "Real-time appointment lifecycle tracking from pending to approved, in-progress, completed, rejected, or missed",
+      "Automated scheduler running every 30 seconds to send reminders, prompt presence confirmation, and complete sessions",
+      "Double-booking prevention through database-level constraints for official time slots",
+      "Weekly availability management with recurring 30-minute slots between 08:30 and 15:30"
     ],
     techStack: {
       "Frontend": "HTML5, CSS3, JavaScript (Vanilla), Bootstrap 5.3.0",
       "Backend": "Node.js, Express.js",
       "Database": "MySQL 5.7+",
       "Authentication": "bcrypt, express-session",
-      "Real-Time": "Server-Sent Events / AJAX polling"
+      "Real-Time": "Server-Sent Events / AJAX polling",
+      "Other Tools": "dotenv, nodemon, MySQL2"
     },
-    architectureNotes: "Traditional server-rendered MVC pattern using Express.js. MySQL handles relational data for users, appointments, and availability. The automated scheduler is a background interval process within the Node.js runtime.",
+    architectureNotes: "The application follows a traditional server-rendered MVC pattern. Express handles routing, views, and API behavior, while MySQL stores students, officials, administrators, appointments, availability slots, and audit data. The scheduler runs as a background interval inside the Node.js process, and schema updates are handled through standalone migration scripts with backup-first safety.",
     challengesSolved: [
-      "Building a reliable internal scheduler without external cron jobs",
-      "Implementing database-level unique constraints for double-booking prevention",
-      "Designing a clean multi-role permission system",
-      "Handling Africa/Lusaka (UTC+2) timezone across the stack",
-      "Safe database migration workflow with backup-first strategy"
+      "Built reliable time-driven automation without external cron infrastructure",
+      "Prevented race-condition double bookings with database-level unique constraints",
+      "Designed clear multi-role access control so each user type sees only relevant actions",
+      "Handled Africa/Lusaka timezone expectations consistently across the appointment lifecycle",
+      "Created a safer migration workflow with backup utilities before schema changes"
     ],
     liveDemoUrl: "",
     repoUrl: "https://github.com/MetaADRI/cavendish-appointment-system",
-    tags: ["NodeJS", "Express", "MySQL", "FullStack", "Bootstrap", "AppointmentBooking", "EducationTech", "RealTime", "UniversityManagement"]
+    tags: ["NodeJS", "Express", "MySQL", "FullStack", "Bootstrap", "AppointmentBooking", "EducationTech", "RealTime", "SessionManagement", "UniversityManagement"],
+    screenshots: [
+      { url: "/images/research-1.jpg", caption: "System concept visual representing student booking, official availability, and real-time appointment coordination." }
+    ]
   },
   "mobilink": {
-    title: "MobiLink — Intercity Mobility & Parcel Logistics Platform",
-    summary: "MobiLink is a modern, scalable intercity mobility and parcel logistics platform built specifically for the Zambian market. It connects passengers with drivers for intercity travel while also enabling secure parcel delivery between cities.",
-    shortDescription: "A modern intercity mobility and parcel logistics platform for Zambia featuring Mobile Money integration (MTN/Airtel) and real-time trip booking.",
+    title: "MobiLink - Intercity Mobility & Parcel Logistics Platform",
+    heroImage: "/images/mobilink.png",
+    heroCaption: "MobiLink landing page with the core route discovery and service selection experience.",
+    summary: "MobiLink is a modern, scalable intercity mobility and parcel logistics platform built for the Zambian market. It connects passengers with drivers for intercity travel while also enabling secure parcel delivery between cities. Passengers can discover routes and book trips, drivers can post available journeys and manage bookings, and administrators can oversee platform operations through analytics and management tools.",
+    shortDescription: "A Zambian intercity mobility and parcel logistics platform with multi-role users, trip booking, parcel delivery, mobile money payments, and admin oversight.",
+    marketContext: "MobiLink addresses the fragmented nature of intercity transportation in Zambia, where travelers often rely on informal bus stations and word-of-mouth to find rides. By digitizing route discovery, booking, parcel delivery, and payments through MTN and Airtel Mobile Money, the platform creates a safer, more transparent mobility experience and a new earning channel for drivers.",
     keyFeatures: [
-      "Multi-Role System — Passengers, Drivers, and Admins",
-      "Intercity Trip Booking — Search routes across 25+ Zambian cities",
-      "Parcel Delivery System — Secure intercity package delivery with tracking",
-      "Mobile Money Integration — Seamless payments via MTN and Airtel Money APIs",
-      "Driver Verification & Ratings — Identity verification and user review system"
+      "Multi-role system for passengers, drivers, and admins with protected role-based workflows",
+      "Intercity trip booking across 25+ Zambian cities with one-way and round-trip options",
+      "Parcel delivery workflow for sender and recipient details, delivery preferences, and tracking",
+      "MTN Mobile Money and Airtel Money payment integration aligned with Zambia's payment habits",
+      "Driver verification, ratings, and reviews to increase trust and accountability"
     ],
     techStack: {
-      "Frontend": "React 18, Vite, Tailwind CSS, Zustand",
+      "Frontend": "React 18, Vite, Tailwind CSS, React Router, Axios, Zustand",
       "Backend": "Node.js, Express.js",
       "Database": "PostgreSQL",
       "ORM": "Prisma",
       "Authentication": "JWT, bcrypt",
-      "Payments": "MTN Mobile Money API, Airtel Money API"
+      "Payments": "MTN Mobile Money API, Airtel Money API",
+      "Deployment": "Vercel (frontend), Render (backend)"
     },
-    architectureNotes: "Modern full-stack architecture with React frontend and Express API. Prisma ORM provides type-safe access to PostgreSQL. Feature-based backend organization.",
+    architectureNotes: "MobiLink uses a separated full-stack architecture. The React/Vite frontend communicates with a RESTful Express API, while Prisma provides type-safe access to PostgreSQL. Backend logic is organized by feature modules, middleware for authentication and validation, services for business rules, and utilities for deployment and environment configuration.",
     challengesSolved: [
-      "Integrating with local Zambian Mobile Money APIs",
-      "Clean role-based permission system with route guards",
-      "Ensuring real-time consistency for trip availability",
-      "Efficient search algorithm for 25+ Zambian cities",
-      "Coordinating cross-platform deployment on Vercel and Render"
+      "Integrated payment flows around MTN and Airtel Mobile Money expectations for the Zambian market",
+      "Implemented role-based permission boundaries across passenger, driver, and admin experiences",
+      "Kept trip availability and booking state consistent for concurrent users",
+      "Designed route search and city-pair handling for 25+ Zambian destinations",
+      "Coordinated frontend deployment on Vercel and backend deployment on Render with proper CORS configuration"
     ],
     liveDemoUrl: "https://www.eilzm.com/",
     repoUrl: "https://github.com/MetaADRI/MobiLink",
-    tags: ["React", "TypeScript", "NodeJS", "Express", "PostgreSQL", "Prisma", "MobileMoney", "FinTech", "Logistics", "Zambia", "FullStack"],
+    tags: ["React", "Vite", "TypeScript", "NodeJS", "Express", "PostgreSQL", "Prisma", "MobileMoney", "FinTech", "Logistics", "Zambia", "FullStack", "Transportation"],
     screenshots: [
-      { url: "/images/mobilink.png", caption: "MobiLink Intercity Mobility Platform" }
+      { url: "/images/mobilink.png", caption: "Homepage experience showing premium intercity mobility positioning and primary actions for rides, bookings, and parcels." },
+      { url: "/images/mobilink-parcel.png", caption: "Parcel delivery visual showing the logistics side of MobiLink's intercity package workflow." },
+      { url: "/images/mobilink-bus.png", caption: "Passenger travel visual supporting the intercity ride booking experience." },
+      { url: "/images/mobilink-route.png", caption: "Route and roadside visual emphasizing city-to-city movement and trip discovery." }
     ]
   },
   "lala": {
-    title: "Lala — Affordable Stays Marketplace for Zambia",
-    summary: "Lala is a modern, mobile-first marketplace for affordable accommodation in Zambia. Designed specifically for the local market, it connects travelers with verified guesthouses, lodges, and township stays through WhatsApp-native booking.",
+    title: "Lala - Affordable Stays Marketplace for Zambia",
+    heroImage: "/images/lala.png",
+    heroCaption: "Lala landing page with affordable-stay positioning, search entry point, and host/traveler calls to action.",
+    summary: "Lala is a modern, mobile-first marketplace for affordable accommodation in Zambia. It connects travelers with verified guesthouses, lodges, and township stays, while intentionally centering WhatsApp-native booking and Mobile Money payments because that reflects how many Zambians already communicate and transact.",
     shortDescription: "A mobile-first marketplace for affordable stays in Zambia featuring WhatsApp-native booking and low-data PWA design.",
+    marketContext: "Lala solves a gap in the local short-stay market: budget accommodation is often fragmented, informal, and hard to compare. Instead of copying global marketplace assumptions, the platform is designed for local behavior: WhatsApp-first communication, MTN/Airtel payments, price sensitivity, and low-data access.",
     keyFeatures: [
-      "WhatsApp-Native Booking — Direct communication on the preferred platform",
-      "Mobile Money Integration — Payments via MTN and Airtel Money",
-      "Low-Data PWA Design — Optimized for minimal data usage and fast load times",
-      "Host Management Dashboard — Property listing and booking tracking",
-      "Verified Listings — Quality assurance system for budget accommodations"
+      "WhatsApp-native booking so travelers can initiate reservations through a familiar communication channel",
+      "Mobile Money payment support for MTN and Airtel Money",
+      "Low-data PWA philosophy for fast loading on limited internet plans",
+      "Host dashboard for property listings, availability, pricing, bookings, and earnings",
+      "Verified listings and lightweight trust signals for local budget accommodation"
     ],
     techStack: {
       "Frontend": "HTML5, CSS3, JavaScript (Vanilla)",
@@ -365,52 +397,60 @@ export const projectDetailsConfig: Record<string, ProjectDetailData> = {
       "Database": "PostgreSQL",
       "ORM": "Sequelize",
       "Authentication": "JWT, bcryptjs",
-      "Payments": "MTN Mobile Money API, Airtel Money API"
+      "Payments": "MTN Mobile Money API, Airtel Money API",
+      "Deployment": "Vercel"
     },
-    architectureNotes: "Clean client-server architecture with Node.js/Express backend and static frontend. Sequelize ORM manages PostgreSQL schema. JWT for stateless authentication.",
+    architectureNotes: "Lala uses a clean client-server architecture with a static HTML/CSS/JavaScript frontend and a Node.js/Express backend. Sequelize manages PostgreSQL models for users, listings, bookings, and payments. Authentication is stateless through JWT, and the API is CORS-enabled for the decoupled Vercel frontend.",
     challengesSolved: [
-      "Architecting WhatsApp-native booking flows",
-      "Mobile Money API orchestration for local carriers",
-      "Low-data optimization for users on metered connections",
-      "Adapting marketplace patterns to local Zambian behavior",
-      "Lightweight verification system for building trust"
+      "Designed a booking flow that uses WhatsApp while preserving booking context and host communication",
+      "Planned mobile money orchestration across MTN and Airtel payment behavior",
+      "Kept the frontend lightweight for users on metered or inconsistent connections",
+      "Adapted marketplace UX to local Zambian travel and accommodation patterns",
+      "Created a lightweight verification approach that builds trust without heavy onboarding friction"
     ],
     liveDemoUrl: "https://lala010.vercel.app/",
     repoUrl: "https://github.com/MetaADRI/Lala",
-    tags: ["NodeJS", "Express", "PostgreSQL", "Sequelize", "Marketplace", "WhatsApp", "MobileMoney", "PWA", "Zambia", "TravelTech"],
+    tags: ["NodeJS", "Express", "PostgreSQL", "Sequelize", "Marketplace", "WhatsApp", "MobileMoney", "PWA", "Zambia", "TravelTech", "LowData", "FullStack"],
     screenshots: [
-      { url: "/images/lala.png", caption: "Lala Affordable Stays Marketplace" }
+      { url: "/images/lala.png", caption: "Homepage showing Lala's affordable-stay positioning, search bar, and direct CTAs for browsing or becoming a host." }
     ]
   },
   "autoelite-car-dealership": {
-    title: "AutoElite Car Dealership — Full-Stack E-Commerce Platform",
-    summary: "AutoElite Car Dealership is a complete full-stack e-commerce platform for vehicle sales. It provides an end-to-end car buying experience where customers can browse inventory, filter by make/model/price/year, and complete purchases.",
+    title: "AutoElite Car Dealership - Full-Stack E-Commerce Platform",
+    heroImage: "/images/research-4.jpg",
+    heroCaption: "E-commerce concept visual for vehicle inventory, cart, checkout, and admin sales management.",
+    summary: "AutoElite Car Dealership is a complete full-stack e-commerce platform for vehicle sales. It supports an end-to-end car buying experience where customers can browse inventory, filter by make, model, price, and year, add vehicles to a shopping cart, and complete purchase flows with order history.",
     shortDescription: "A full-stack car dealership e-commerce platform with inventory management, advanced filtering, and shopping cart. Built with Python Flask.",
+    marketContext: "The project demonstrates full-stack e-commerce fundamentals through a vehicle marketplace domain. It combines catalog browsing, cart persistence, checkout flow, user authentication, order tracking, and admin inventory oversight into one coherent Flask/MySQL application.",
     keyFeatures: [
-      "Vehicle Inventory Management — Comprehensive car catalog with detailed attributes",
-      "Advanced Search & Filtering — Multi-attribute filtering for the perfect vehicle",
-      "Shopping Cart & Checkout — Full cart functionality and order placement",
-      "User Authentication & Profiles — Secure registration, login, and order history",
-      "Admin Dashboard — Interface for inventory and order management"
+      "Vehicle inventory management with make, model, year, price, mileage, descriptions, and images",
+      "Advanced search and filtering by make, model, price range, year, and vehicle attributes",
+      "Shopping cart and checkout with add/remove behavior, totals, and order placement",
+      "JWT-secured user authentication with profile management and order history",
+      "Admin dashboard for inventory management, order review, and platform oversight"
     ],
     techStack: {
       "Frontend": "HTML5, CSS3, JavaScript (Vanilla)",
       "Backend": "Python 3, Flask 2.3.3",
       "Database": "MySQL",
-      "Authentication": "PyJWT, bcrypt",
+      "Database Driver": "Flask-MySQLdb",
+      "Authentication": "PyJWT 2.8.0, bcrypt 4.0.1",
       "Security": "Werkzeug, Flask-CORS"
     },
-    architectureNotes: "Modular blueprint architecture using Python Flask. Separate modules for auth, catalog, cart, and models. MySQL for relational data storage.",
+    architectureNotes: "AutoElite follows Flask's modular blueprint architecture. The backend is organized into modules for authentication, vehicle catalog APIs, cart and checkout logic, database models, configuration, and utility helpers. MySQL stores users, vehicles, cart items, and orders, while the frontend communicates with the API through fetch/AJAX.",
     challengesSolved: [
-      "Organizing a growing Flask app into maintainable blueprints",
-      "Implementing secure JWT authentication flow in Python",
-      "Designing a database-backed persistent shopping cart",
-      "Building a responsive e-commerce UI without modern frameworks",
-      "Efficient MySQL schema design for car attributes and orders"
+      "Organized a growing Flask application into maintainable blueprints",
+      "Implemented secure JWT authentication and password hashing in Python",
+      "Designed a persistent database-backed cart that survives user sessions",
+      "Built a responsive e-commerce interface without relying on a frontend framework",
+      "Modeled vehicle attributes, users, carts, and orders efficiently in MySQL"
     ],
     liveDemoUrl: "",
     repoUrl: "https://github.com/MetaADRI/car-dealer",
-    tags: ["Python", "Flask", "MySQL", "JWT", "ECommerce", "FullStack", "CarDealership", "WebDevelopment"]
+    tags: ["Python", "Flask", "MySQL", "JWT", "ECommerce", "FullStack", "CarDealership", "ShoppingCart", "WebDevelopment", "RESTfulAPI"],
+    screenshots: [
+      { url: "/images/research-4.jpg", caption: "Vehicle commerce concept visual representing inventory browsing, cart management, checkout, and admin sales monitoring." }
+    ]
   }
 };
 
@@ -505,3 +545,4 @@ export const footerConfig: FooterConfig = {
     { label: "Email", href: "mailto:adrianmange00@gmail.com" },
   ],
 };
+

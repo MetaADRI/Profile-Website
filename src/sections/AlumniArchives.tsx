@@ -90,8 +90,7 @@ export default function AlumniArchives() {
               ref={(el) => { itemRefs.current[i] = el; }}
               className="group cursor-pointer"
               onClick={() => {
-                const slug = project.title.toLowerCase().replace(/\s+/g, '-');
-                navigate(`/project/${slug}`);
+                navigate(`/project/${project.slug}`);
                 window.scrollTo(0, 0);
               }}
               style={{

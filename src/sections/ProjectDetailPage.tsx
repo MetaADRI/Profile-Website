@@ -73,11 +73,34 @@ export default function ProjectDetailPage() {
       subtitle={project.shortDescription}
     >
       <div style={{ display: 'flex', flexDirection: 'column', gap: 64, paddingBottom: 100 }}>
+        <section>
+          <div style={heroFrameStyle}>
+            <img
+              src={project.heroImage}
+              alt={project.heroCaption}
+              style={heroImageStyle}
+            />
+          </div>
+          <p style={captionStyle}>{project.heroCaption}</p>
+        </section>
+
+        <section>
+          <div style={tagWrapStyle}>
+            {project.tags.map((tag) => (
+              <span key={tag} style={tagStyle}>{tag}</span>
+            ))}
+          </div>
+        </section>
         
         {/* Project Summary */}
         <section>
           <h3 style={sectionHeadingStyle}>Project Summary</h3>
           <p style={paragraphStyle}>{project.summary}</p>
+        </section>
+
+        <section>
+          <h3 style={sectionHeadingStyle}>Problem & Market Fit</h3>
+          <p style={paragraphStyle}>{project.marketContext}</p>
         </section>
 
         {/* Key Features */}
@@ -133,7 +156,7 @@ export default function ProjectDetailPage() {
         </section>
 
         {/* Architecture & Challenges */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, flexWrap: 'wrap' }}>
+        <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 48 }}>
           <section>
             <h3 style={sectionHeadingStyle}>Architecture Notes</h3>
             <p style={{ ...paragraphStyle, fontSize: 16 }}>{project.architectureNotes}</p>
@@ -150,7 +173,7 @@ export default function ProjectDetailPage() {
                   gap: 12,
                   alignItems: 'flex-start'
                 }}>
-                  <span style={{ color: 'rgba(255, 255, 255, 0.3)', marginTop: 4 }}>•</span>
+                  <span style={{ color: 'rgba(255, 255, 255, 0.3)', marginTop: 4 }}>-</span>
                   <span>{challenge}</span>
                 </li>
               ))}
@@ -189,17 +212,7 @@ export default function ProjectDetailPage() {
                       }}
                     />
                   </div>
-                  <p style={{ 
-                    fontFamily: "'Inter', sans-serif", 
-                    fontSize: 14, 
-                    color: 'rgba(255, 255, 255, 0.4)', 
-                    marginTop: 16,
-                    textAlign: 'center',
-                    fontWeight: 300,
-                    fontStyle: 'italic'
-                  }}>
-                    — {shot.caption}
-                  </p>
+                  <p style={captionStyle}>{shot.caption}</p>
                 </div>
               ))}
             </div>
@@ -268,6 +281,45 @@ const paragraphStyle = {
   margin: 0,
 };
 
+const heroFrameStyle = {
+  width: '100%',
+  background: 'rgba(255, 255, 255, 0.03)',
+  border: '1px solid rgba(255, 255, 255, 0.1)',
+  overflow: 'hidden',
+};
+
+const heroImageStyle = {
+  width: '100%',
+  aspectRatio: '16 / 9',
+  objectFit: 'cover' as const,
+  display: 'block',
+};
+
+const captionStyle = {
+  fontFamily: "'Inter', sans-serif",
+  fontSize: 14,
+  color: 'rgba(255, 255, 255, 0.5)',
+  marginTop: 16,
+  textAlign: 'center' as const,
+  fontWeight: 300,
+  lineHeight: 1.6,
+};
+
+const tagWrapStyle = {
+  display: 'flex',
+  flexWrap: 'wrap' as const,
+  gap: 10,
+};
+
+const tagStyle = {
+  fontFamily: "'Fira Code', monospace",
+  fontSize: 12,
+  color: 'rgba(255, 255, 255, 0.72)',
+  border: '1px solid rgba(255, 255, 255, 0.12)',
+  background: 'rgba(255, 255, 255, 0.04)',
+  padding: '8px 10px',
+};
+
 const linkButtonStyle = {
   padding: '12px 24px',
   background: '#ffffff',
@@ -279,3 +331,4 @@ const linkButtonStyle = {
   borderRadius: '4px',
   transition: 'opacity 0.2s',
 };
+
