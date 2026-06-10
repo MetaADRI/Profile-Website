@@ -1,7 +1,5 @@
 # Bwalya Adrian Mange | Professional Portfolio
 
-!Bwalya Adrian Mange
-
 ## 🌐 Bridging the Digital Gap
 
 I am a **Cybersecurity & Full-Stack Developer** and **IT Support Professional** dedicated to creating digital experiences that are functional, beautiful, and purposefully resilient. With a foundation built on clear communication and proactive problem-solving, I specialize in bridging the link between complex technology and the people who use it every day.
