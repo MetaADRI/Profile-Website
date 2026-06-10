@@ -1,6 +1,6 @@
 # Bwalya Adrian Mange | Professional Portfolio
 
-![Bwalya Adrian Mange Portfolio](public/images/profile.jpg)
+!Bwalya Adrian Mange
 
 ## 🌐 Bridging the Digital Gap
 
@@ -33,32 +33,6 @@ To be the **bridge in the digital gap**. I combine a customer-first mindset with
 - **Animations:** [GSAP](https://gsap.com/) & [Lucide React Icons](https://lucide.dev/)
 - **Routing:** [React Router 7](https://reactrouter.com/)
 - **Graphics:** HTML5 Canvas (Amber Digital Rain effect)
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-- Node.js (Latest LTS recommended)
-- npm or yarn
-
-### Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/MetaADRI/Profile-Website.git
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd "Personal Website"
-   ```
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-4. Start the development server:
-   ```bash
-   npm run dev
-   ```
 
 ---
 
