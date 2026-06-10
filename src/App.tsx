@@ -10,6 +10,7 @@ import AboutPage from './sections/AboutPage';
 import SkillsPage from './sections/SkillsPage';
 import ContactPage from './sections/ContactPage';
 import ProjectDetailPage from './sections/ProjectDetailPage';
+import Certifications from './sections/Certifications';
 
 function HomePage() {
   return (
@@ -27,6 +28,7 @@ function HomePage() {
         <Curriculum />
         <CinematicVision />
         <AlumniArchives />
+        <Certifications />
         <Footer />
       </main>
     </div>

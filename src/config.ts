@@ -246,6 +246,53 @@ export interface FooterConfig {
   bottomLinks: FooterBottomLink[];
 }
 
+export interface Certification {
+  title: string;
+  issuer: string;
+  date: string;
+  description: string;
+  skills: string[];
+  modules: string[];
+}
+
+export const certificationsConfig: Certification[] = [
+  {
+    title: "Google Cybersecurity Professional Certificate",
+    issuer: "Google / Coursera",
+    date: "2026",
+    description: "A comprehensive program covering the full lifecycle of cybersecurity operations, from asset protection to incident response and automation.",
+    skills: ["Python", "Linux", "SQL", "SIEM Tools", "IDS", "Network Security", "Risk Management"],
+    modules: [
+      "Foundations of Cybersecurity",
+      "Manage Security Risks (NIST CSF)",
+      "Networks and Network Security",
+      "Linux and SQL for Security",
+      "Assets, Threats, and Vulnerabilities",
+      "Detection and Response (SIEM/IDS)",
+      "Automate Security Tasks with Python",
+      "Cybersecurity Capstone"
+    ]
+  },
+  {
+    title: "Google IT Support Professional Certificate",
+    issuer: "Google / Coursera",
+    date: "2025",
+    description: "Foundational IT expertise focusing on troubleshooting, networking, system administration, and customer service.",
+    skills: ["Troubleshooting", "Networking", "System Administration", "Operating Systems", "IT Security", "Customer Service"],
+    modules: [
+      "Technical Support Fundamentals",
+      "The Bits and Bytes of Computer Networking",
+      "Operating Systems: Becoming a Power User",
+      "System Administration and IT Infrastructure Services",
+      "IT Security: Defense against the digital dark arts"
+    ]
+  }
+];
+
+export const personalDocsConfig = {
+  cvPath: "/Bwalya-Adrian-Mange-CV.pdf",
+};
+
 export const footerConfig: FooterConfig = {
   heading: "Let's Build Something Together",
   columns: [
